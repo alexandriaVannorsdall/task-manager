@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "8533298ec16e5520fcd36ac0632ac06f",
     "packages": [
+        {
+            "name": "afaanbilal/laravel-has-uuid",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AfaanBilal/laravel-has-uuid.git",
+                "reference": "8028900eb3a0a6f787c5ce60809d03d978875cfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AfaanBilal/laravel-has-uuid/zipball/8028900eb3a0a6f787c5ce60809d03d978875cfe",
+                "reference": "8028900eb3a0a6f787c5ce60809d03d978875cfe",
+                "shasum": ""
+            },
+            "require": {
+                "ramsey/uuid": "^4.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AfaanBilal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Afaan Bilal",
+                    "email": "afaanbilal@gmail.com",
+                    "homepage": "https://afaan.dev"
+                }
+            ],
+            "description": "Autogenerate UUIDs for your Models on insert and set the route-model-binding key to uuid.",
+            "support": {
+                "issues": "https://github.com/AfaanBilal/laravel-has-uuid/issues",
+                "source": "https://github.com/AfaanBilal/laravel-has-uuid/tree/0.1.3"
+            },
+            "time": "2023-06-26T08:44:26+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",
