@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
     /**
      * @param Request $request
-     * @return array
+     * @return JsonResponse
      */
-    public function signUp(Request $request): array
+    public function signUp(Request $request): JsonResponse
     {
         $request->validate(rules:[
             'email' => ['required', 'email', 'unique:users'],
@@ -26,8 +28,42 @@ class AuthController extends Controller
         $user->password = $request->password;
         $user->save();
 
-        return [
-            'status' => 'success',
-        ];
+        return $this->success();
+    }
+
+    /**
+     * @param Request $request
+     * @return array|JsonResponse
+     */
+    public function signIn(Request $request): array| JsonResponse
+    {
+        $request->validate(rules:[
+            'email' => ['required', 'email', 'email'],
+            'password' => ['required', 'string']
+        ]);
+
+        $user = User::where('email',$request->email)->first();
+
+        if (!$user) {
+            return $this->error('Invalid credentials.');
+        }
+        if (!Hash::check($request->password, $user->password)) {
+            return $this->error('Invalid credentials.');
+        }
+
+        return $this->success(['access_token' => $user->createToken('login')->plainTextToken]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function signOut(Request $request): JsonResponse
+    {
+        if ($request->user()) {
+            $request->user()->currentAccessToken()->delete();
+        }
+
+        return $this->success();
     }
 }
