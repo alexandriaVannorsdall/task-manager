@@ -12,6 +12,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    public int $itemsPerPage = 20;
+    public string $sort_by = 'updated_at';
+    public string $sort_dir = 'desc';
+
     /**
      * @param string $message
      * @param int $status

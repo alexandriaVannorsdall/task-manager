@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TaskListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +33,12 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/', 'getProfile');
             Route::put('/', 'updateProfile');
         });
+
+    Route::get('task-lists/{task_list}/tasks', [TaskListController::class, 'tasks']);
+    Route::post('task-lists/{task_list}/tasks', [TaskListController::class, 'addTask']);
+
+    Route::post('tasks/{task}/status', [TaskController::class, 'updateStatus']);
+
+    Route::apiResource('task-lists', TaskListController::class);
+    Route::apiResource('tasks', TaskController::class);
 });
